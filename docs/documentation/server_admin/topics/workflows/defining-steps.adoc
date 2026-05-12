@@ -92,6 +92,11 @@ on the realm resource associated with the event, so that each realm resource typ
 ** `*` to unlink user from all linked Identity Providers
 | `disable-user` | Disable the user | None
 | `delete-user` | Delete the user | None
+| `invite-user` | Send an invitation email to the user with a one-time link to activate their account a|
+* `actions`: One or more required action names. Defaults to `UPDATE_PASSWORD` and `VERIFY_EMAIL` when not set. Supported values: `UPDATE_PASSWORD`, `VERIFY_EMAIL`, `UPDATE_PROFILE`, `UPDATE_EMAIL`, `CONFIGURE_TOTP`, `TERMS_AND_CONDITIONS`.
+* `client-id`: The client id associated with the action token. Defaults to the system client.
+* `redirect-uri`: The URI to redirect the user to after completing all required actions. Must be a valid redirect URI for the configured client.
+* `lifespan`: Validity duration of the action token link. Accepts ISO-8601 duration (e.g. `PT12H`) or a number followed by a unit (`ms`, `s`, `m`, `h`, `d`). Defaults to the realm's admin action token lifespan.
 |===
 
 [[_workflow_client_steps_]]

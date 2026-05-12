@@ -8,7 +8,25 @@ Workflows can be used to automate a wide range of administrative tasks within a 
 
 == User Onboarding
 
-When a new user is created, a workflow can automatically send a welcome email, and assign initial roles or groups to the user. This ensures that new users have the necessary access and information from the moment they join.
+When a new user is created, a workflow can automatically assign initial roles or groups to the user and send them an invitation email with a one-time link to activate their account. This ensures that new users have the necessary access from the moment they join.
+
+```yaml
+name: Onboarding gold members
+on: user-created
+if: has-user-attribute(membership=gold)
+steps:
+  - uses: grant-role
+    with:
+      role: gold-member
+  - uses: invite-user
+    with:
+      actions:
+        - UPDATE_PASSWORD
+        - VERIFY_EMAIL
+      redirect-uri: https://app.example.com/welcome
+```
+
+If you only need a simple notification without an action link, you can use the `notify-user` step instead:
 
 ```yaml
 name: Onboarding gold members

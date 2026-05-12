@@ -76,6 +76,15 @@ public interface EmailTemplateProvider extends Provider {
      */
     void sendExecuteActions(String link, long expirationInMinutes) throws EmailException;
 
+    /**
+     * Send an invitation email to the user with a one-time link for completing required actions.
+     *
+     * @param link
+     * @param expirationInMinutes
+     * @throws EmailException
+     */
+    void sendUserInviteEmail(String link, long expirationInMinutes) throws EmailException;
+
     void sendVerifyEmail(String link, long expirationInMinutes) throws EmailException;
 
     void sendOrgInviteEmail(OrganizationModel organization, String link, long expirationInMinutes) throws EmailException;
